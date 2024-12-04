@@ -2,28 +2,16 @@
 <Robot type="FirstInspires-FTC">
     <LynxUsbDevice name="Control Hub Portal" serialNumber="(embedded)" parentModuleAddress="173">
         <LynxModule name="Expansion Hub 2" port="2">
-            <goBILDA5203SeriesMotor name="left_front" port="0" />
-            <goBILDA5203SeriesMotor name="left_back" port="1" />
-            <goBILDA5203SeriesMotor name="right_front" port="2" />
-            <goBILDA5203SeriesMotor name="right_back" port="3" />
-
             <Servo name="horizontalArm" port="0" />
-            <Servo name="horizontalWrist" port="1" />
-            <Servo name="verticalArm" port="2" />
-            <Servo name="verticalWrist" port="3" />
-            <Servo name="deposit" port="4" />
-
             <RevColorSensorV3 name="color" port="0" bus="0" />
             <DigitalDevice name="pin0" port="6"/>
             <DigitalDevice name="pin1" port="7"/>
         </LynxModule>
         <LynxModule name="Control Hub" port="173">
-            <ContinuousRotationServo name="servoLF" port="0" />
-            <ContinuousRotationServo name="servoRF" port="1" />
-            <ContinuousRotationServo name="servoLR" port="2" />
-            <ContinuousRotationServo name="servoRR" port="3" />
-            <ContinuousRotationServo name="intakeLeft" port="4" />
-            <ContinuousRotationServo name="intakeRight" port="5" />
+            <goBILDA5202SeriesMotor name="motorLF" port="0" />
+            <goBILDA5202SeriesMotor name="motorRF" port="1" />
+            <goBILDA5202SeriesMotor name="motorLR" port="2" />
+            <goBILDA5202SeriesMotor name="motorRR" port="3" />
             <AnalogInput name="encoderLF" port="0" />
             <AnalogInput name="encoderRF" port="1" />
             <AnalogInput name="encoderLR" port="2" />

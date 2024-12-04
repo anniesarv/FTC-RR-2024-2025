@@ -26,6 +26,7 @@ android {
 repositories {
     maven {
         url = 'https://maven.brott.dev/'
+
     }
     maven {
         url = 'https://repo.dairy.foundation/releases'
@@ -39,4 +40,6 @@ dependencies {
     implementation "com.acmerobotics.roadrunner:actions:1.0.0"
     implementation "com.acmerobotics.dashboard:dashboard:0.4.16"
     implementation "page.j5155.roadrunner:ftc-otos:0.1.1+0.1.14"
+    implementation 'org.ftclib.ftclib:core:2.1.1'
+
 }
