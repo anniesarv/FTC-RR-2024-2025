@@ -10,8 +10,8 @@ import org.firstinspires.ftc.teamcode.hardware.RobotHardware;
 
 public class HorizontalArm extends SubsystemBase {
 
-    private final DcMotor motorHA;
-    private final DigitalChannel limitSwitchHA;
+    public DcMotor motorHA;
+    //private final DigitalChannel limitSwitchHA;
     private final PIDController pidController;
 
 
@@ -24,7 +24,7 @@ public class HorizontalArm extends SubsystemBase {
 
     public HorizontalArm(RobotHardware robotHardware) {
         this.motorHA = robotHardware.motorVA;
-        this.limitSwitchHA = robotHardware.limitSwitchVA;
+        //this.limitSwitchHA = robotHardware.limitSwitchVA;
 
         pidController = new PIDController(kP, kI, kD);
 
@@ -44,7 +44,7 @@ public class HorizontalArm extends SubsystemBase {
     public void stopArm() {
         motorHA.setPower(0);
     }
-
+/*
     public void checkAndResetEncoder() {
         if (!limitSwitchHA.getState()) {
             motorHA.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
@@ -56,4 +56,6 @@ public class HorizontalArm extends SubsystemBase {
     public void periodic() {
         checkAndResetEncoder();
     }
+    */
+
 }

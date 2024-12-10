@@ -11,7 +11,7 @@ import org.firstinspires.ftc.teamcode.hardware.RobotHardware;
 public class VerticalArm extends SubsystemBase {
 
     private final DcMotor motorVA;
-    private final DigitalChannel limitSwitchVA;
+   // private final DigitalChannel limitSwitchVA;
     private final PIDFController pidfController;
 
 
@@ -24,7 +24,7 @@ public class VerticalArm extends SubsystemBase {
 
     public VerticalArm(RobotHardware robotHardware) {
         this.motorVA = robotHardware.motorVA;
-        this.limitSwitchVA = robotHardware.limitSwitchVA;
+        //this.limitSwitchVA = robotHardware.limitSwitchVA;
 
         pidfController = new PIDFController(kP, kI, kD, kF);
 
@@ -45,8 +45,8 @@ public class VerticalArm extends SubsystemBase {
         motorVA.setPower(0);
     }
 
-    public void checkAndResetEncoder() {
-        if (!limitSwitchVA.getState()) {
+   /* public void checkAndResetEncoder() {
+       if (!limitSwitchVA.getState()) {
             motorVA.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             motorVA.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         }
@@ -55,5 +55,5 @@ public class VerticalArm extends SubsystemBase {
     @Override
     public void periodic() {
         checkAndResetEncoder();
-    }
+    } */
 }

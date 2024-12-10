@@ -2,14 +2,17 @@
 <Robot type="FirstInspires-FTC">
     <LynxUsbDevice name="Control Hub Portal" serialNumber="(embedded)" parentModuleAddress="173">
         <LynxModule name="Expansion Hub 2" port="2">
-            <goBILDA5202SeriesMotor name="motorHA" port="0" />
-            <goBILDA5202SeriesMotor name="motorVA" port="0" />
-            <Servo name="horizontalWrist" port="0" />
-            <Servo name="verticalWrist" port="1" />
-            <Servo name="intakeLeft" port="2" />
-            <Servo name="horizontalRight" port="3" />
-            <Servo name="microServo" port="4" />
+            <goBILDA5202SeriesMotor name="motorHA" port="3" />
+            <goBILDA5202SeriesMotor name="motorVA" port="2" />
+            <RevTouchSensor name="limitSwitchHA" port="1" />
             <RevColorSensorV3 name="color" port="0" bus="0" />
+            <AnalogInput name="encoderHA" port="3" />
+            <AnalogInput name="encoderVA" port="2" />
+            <Servo name="horizontalArm" port="0" />
+            <Servo name="horizontalWrist" port="1" />
+            <Servo name="verticalArm" port="2" />
+            <Servo name="verticalWrist" port="3" />
+            <Servo name="deposit" port="4" />
             <DigitalDevice name="pin0" port="6"/>
             <DigitalDevice name="pin1" port="7"/>
         </LynxModule>
@@ -18,12 +21,12 @@
             <goBILDA5202SeriesMotor name="motorRF" port="1" />
             <goBILDA5202SeriesMotor name="motorLR" port="2" />
             <goBILDA5202SeriesMotor name="motorRR" port="3" />
-            <AnalogInput name="encoderLF" port="0" />
-            <AnalogInput name="encoderRF" port="1" />
-            <AnalogInput name="encoderLR" port="2" />
-            <AnalogInput name="encoderRR" port="3" />
-            <RevTouchSensor name="verticalLimit" port="1" />
-            <RevTouchSensor name="horizontallimit" port="1" />
+            <ContinuousRotationServo name="intakeLeft" port="1" />
+            <ContinuousRotationServo name="intakeRight" port="0" />
+            <Servo name="horizontalWrist" port="2" />
+            <Servo name="verticalWrist" port="3" />
+            <Servo name="microServo" port="4" />
+            <RevTouchSensor name="limitSwitchVA" port="1" />
             <LynxEmbeddedIMU name="imu" port="0" bus="0" />
             <SparkFunOTOS name="otos" port="1" bus="0" />
         </LynxModule>

@@ -14,7 +14,7 @@ public class RobotHardware {
 
 
     // sensors
-    public DigitalChannel limitSwitchVA, limitSwitchHA;
+    //public DigitalChannel limitSwitchVA, limitSwitchHA;
 
     // hardware map
     private HardwareMap hwMap;
@@ -42,7 +42,7 @@ public class RobotHardware {
         motorRF.setDirection(DcMotor.Direction.FORWARD);
         motorRR.setDirection(DcMotor.Direction.FORWARD);
 
-        // Set motor modes and zero power behavior
+        // set motor modes and zero power behavior
         DcMotor[] motors = {motorLF, motorRF, motorLR, motorRR, motorVA, motorHA};
         for (DcMotor motor : motors) {
             motor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
@@ -50,7 +50,7 @@ public class RobotHardware {
             motor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         }
 
-        // Initialize servos
+        // initialize servos
         horizontalWrist = hwMap.get(Servo.class, "horizontalWrist");
         verticalWrist = hwMap.get(Servo.class, "verticalWrist");
         microServo = hwMap.get(Servo.class, "microServo");
@@ -59,15 +59,15 @@ public class RobotHardware {
 
 
 
-        // Set default servo positions
+        // set default servo positions
         horizontalWrist.setPosition(0.5);
         verticalWrist.setPosition(0.5);
 
         // Initialize sensors
-        limitSwitchVA = hwMap.get(DigitalChannel.class, "limitSwitchVA");
-        limitSwitchVA.setMode(DigitalChannel.Mode.INPUT);
+        //limitSwitchVA = hwMap.get(DigitalChannel.class, "limitSwitchVA");
+        //limitSwitchVA.setMode(DigitalChannel.Mode.INPUT);
 
-        limitSwitchHA= hwMap.get(DigitalChannel.class, "limitSwitchVA");
-        limitSwitchHA.setMode(DigitalChannel.Mode.INPUT);
+        //limitSwitchHA= hwMap.get(DigitalChannel.class, "limitSwitchHA");
+        //limitSwitchHA.setMode(DigitalChannel.Mode.INPUT);
     }
 }
