@@ -1,58 +1,36 @@
-package org.firstinspires.ftc.teamcode.commands;
+package org.firstinspires.ftc.teamcode.commands.intakewrist;
 
 import com.arcrobotics.ftclib.command.CommandBase;
 
 import org.firstinspires.ftc.teamcode.subsystems.IntakeWrist;
 import org.firstinspires.ftc.teamcode.subsystems.OuttakeWrist;
 
+import java.util.function.DoubleSupplier;
+
 public class RunIntake extends CommandBase {
 
     private final IntakeWrist intakeWrist;
-   // private final OuttakeWrist outtakeWrist;
 
-    public RunIntake(IntakeWrist intakeWrist, OuttakeWrist outtakeWrist) {
+    // private final OuttakeWrist outtakeWrist;
+
+    public RunIntake(IntakeWrist intakeWrist) {
         this.intakeWrist = intakeWrist;
        // this.outtakeWrist = outtakeWrist;
 
-        addRequirements(intakeWrist, outtakeWrist);
+
+        addRequirements(intakeWrist);
+    }
+
+
+    @Override
+    public void initialize() {
+        intakeWrist.startIntake();
+
     }
 
     @Override
     public void execute() {
-        intakeWrist.startIntake();
 
-        // continuously run intake while a is held
-        /*
-        if (gamepad.a) {
-            intakeWrist.startIntake();
-        } else if (gamepad.b) {
-            intakeWrist.startOuttake();
-        } else {
-            // stop the intake only when neither a nor a is pressed
-            intakeWrist.stopIntake();
-        }
-
-        // Outtake wrist control
-        if (gamepad.x) {
-            outtakeWrist.closeOuttake();
-        } else if (gamepad.y) {
-            outtakeWrist.openOuttake();
-        }
-
-        // wrist position control
-        if (gamepad.dpad_up) {
-            intakeWrist.raiseWrist();
-        } else if (gamepad.dpad_down) {
-            intakeWrist.lowerWrist();
-        }
-
-        if (gamepad.dpad_left) {
-            outtakeWrist.raiseWrist();
-        } else if (gamepad.dpad_right) {
-           outtakeWrist.lowerWrist();
-        }
-
-         */
     }
 
     @Override

@@ -31,11 +31,11 @@ public class OuttakeWrist extends SubsystemBase {
         verticalWrist.setPosition(WRIST_UP_POSITION);
     }
 
-    public void openOuttake() {
+    public void openClaw() {
         microServo.setPosition(OUTTAKE_OPEN_POSITION);
     }
 
-    public void closeOuttake() {
+    public void closeClaw() {
         microServo.setPosition(OUTTAKE_CLOSED_POSITION);
     }
 }

@@ -1,8 +1,7 @@
-package org.firstinspires.ftc.teamcode.commands;
+package org.firstinspires.ftc.teamcode.commands.outtakewrist;
 
 import com.arcrobotics.ftclib.command.CommandBase;
 
-import org.firstinspires.ftc.teamcode.subsystems.IntakeWrist;
 import org.firstinspires.ftc.teamcode.subsystems.OuttakeWrist;
 
 public class OuttakeDown extends CommandBase {
@@ -16,10 +15,16 @@ public class OuttakeDown extends CommandBase {
         addRequirements(outtakeWrist);
     }
 
+
+
+    @Override
+    public void initialize() {
+       outtakeWrist.lowerWrist();
+
+    }
     @Override
     public void execute() {
-        //intakeWrist.startOuttake();
-        outtakeWrist.lowerWrist();
+
 
 
     }

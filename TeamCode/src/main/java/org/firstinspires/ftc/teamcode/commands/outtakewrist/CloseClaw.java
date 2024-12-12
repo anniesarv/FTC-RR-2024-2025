@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.commands;
+package org.firstinspires.ftc.teamcode.commands.outtakewrist;
 
 import com.arcrobotics.ftclib.command.CommandBase;
 
@@ -10,18 +10,20 @@ public class CloseClaw extends CommandBase {
     //private final IntakeWrist intakeWrist;
     private final OuttakeWrist outtakeWrist;
 
-    public CloseClaw(IntakeWrist intakeWrist, OuttakeWrist outtakeWrist) {
-        //this.intakeWrist = intakeWrist;
+    public CloseClaw( OuttakeWrist outtakeWrist) {
         this.outtakeWrist = outtakeWrist;
 
-        addRequirements(intakeWrist, outtakeWrist);
+        addRequirements(outtakeWrist);
     }
 
+
     @Override
-    public void execute() {
-        //intakeWrist.startOuttake();
+    public void initialize() {
         outtakeWrist.closeClaw();
 
+    }
+    @Override
+    public void execute() {
 
     }
 
