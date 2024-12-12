@@ -9,11 +9,11 @@ public class OuttakeWrist extends SubsystemBase {
     private final Servo verticalWrist;
     private final Servo microServo;
 
-    private static final double WRIST_UP_POSITION = 1.0; // Adjust based on your servo configuration
-    private static final double WRIST_DOWN_POSITION = 0.0; // Adjust based on your servo configuration
+    private static final double WRIST_UP_POSITION = 1.0;
+    private static final double WRIST_DOWN_POSITION = 0.0;
 
-    private static final double OUTTAKE_OPEN_POSITION = 1.0; // Open position for outtake
-    private static final double OUTTAKE_CLOSED_POSITION = 0.0; // Closed position
+    private static final double OUTTAKE_OPEN_POSITION = 1.0;
+    private static final double OUTTAKE_CLOSED_POSITION = 0.0;
 
     public OuttakeWrist(RobotHardware robotHardware) {
         this.verticalWrist = robotHardware.verticalWrist;

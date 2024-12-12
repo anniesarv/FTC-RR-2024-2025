@@ -28,7 +28,7 @@ public class FunctionsTest extends OpMode {
     private IntakeWrist intakeWrist;
     private OuttakeWrist outtakeWrist;
 
-    private GamepadEx driver;
+    private GamepadEx driver2;
 
     @Override
     public void init() {
@@ -39,7 +39,7 @@ public class FunctionsTest extends OpMode {
         intakeWrist = new IntakeWrist(robotHardware);
         outtakeWrist = new OuttakeWrist(robotHardware);
 
-        driver = new GamepadEx(gamepad1);
+        driver2 = new GamepadEx(gamepad2);
 
         /*
         CommandScheduler.getInstance().schedule(
@@ -52,44 +52,44 @@ public class FunctionsTest extends OpMode {
     @Override
     public void loop() {
         //run intake with button A
-        new GamepadButton(driver, GamepadKeys.Button.A).whenPressed(
+        new GamepadButton(driver2, GamepadKeys.Button.A).whenPressed(
                 new RunIntake(intakeWrist)
         ).whenReleased(
                 new StopIntake(intakeWrist)
         );
 
         //run outtake with button A
-        new GamepadButton(driver, GamepadKeys.Button.B).whenPressed(
+        new GamepadButton(driver2, GamepadKeys.Button.B).whenPressed(
                 new RunOuttake(intakeWrist)
         ).whenReleased(
                 new StopIntake(intakeWrist)
         );
 
         //Intake down when d pad down
-        new GamepadButton(driver, GamepadKeys.Button.DPAD_DOWN).whenPressed(
+        new GamepadButton(driver2, GamepadKeys.Button.DPAD_DOWN).whenPressed(
                 new IntakeDown(intakeWrist)
         );
 
         //Intake up when d pad up
-        new GamepadButton(driver, GamepadKeys.Button.DPAD_UP).whenPressed(
+        new GamepadButton(driver2, GamepadKeys.Button.DPAD_UP).whenPressed(
                        new IntakeUp(intakeWrist)
         );
 
         //Outtake up when left bumper
-        new GamepadButton(driver, GamepadKeys.Button.LEFT_BUMPER).whenPressed(
+        new GamepadButton(driver2, GamepadKeys.Button.LEFT_BUMPER).whenPressed(
                 new OuttakeUp(outtakeWrist)
         );
 
         //Outtake down when right bumper
-        new GamepadButton(driver, GamepadKeys.Button.RIGHT_BUMPER).whenPressed(
+        new GamepadButton(driver2, GamepadKeys.Button.RIGHT_BUMPER).whenPressed(
                 new OuttakeDown(outtakeWrist)
         );
 
-        new GamepadButton(driver, GamepadKeys.Button.X).whenPressed(
+        new GamepadButton(driver2, GamepadKeys.Button.X).whenPressed(
                 new OpenClaw(outtakeWrist)
         );
 
-        new GamepadButton(driver, GamepadKeys.Button.Y).whenPressed(
+        new GamepadButton(driver2, GamepadKeys.Button.Y).whenPressed(
                 new CloseClaw(outtakeWrist)
         );
         CommandScheduler.getInstance().run();

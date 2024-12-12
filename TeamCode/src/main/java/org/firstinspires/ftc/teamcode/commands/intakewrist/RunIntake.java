@@ -36,8 +36,7 @@ public class RunIntake extends CommandBase {
     @Override
     public void end(boolean interrupted) {
         // stop mechanisms when the command ends ?
-        intakeWrist.stopIntake();
-        //outtakeWrist.closeOuttake();
+       // intakeWrist.stopIntake();
     }
 
     @Override
