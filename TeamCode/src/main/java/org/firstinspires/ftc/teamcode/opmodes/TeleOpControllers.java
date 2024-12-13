@@ -54,6 +54,7 @@ public class TeleOpControllers extends OpMode {
 
         // Gamepad objects for function control
         driver2 = new GamepadEx(gamepad2);
+        driver1 = new GamepadEx(gamepad1);
 
         CommandScheduler.getInstance().reset();
     }

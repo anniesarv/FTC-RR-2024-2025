@@ -9,7 +9,7 @@ import org.firstinspires.ftc.teamcode.subsystems.DriveSubsystem;
 
 
 @TeleOp(name = "Unified Field-Centric TeleOp", group = "Linear Opmode")
-public class MAINFieldCentric extends LinearOpMode {
+public class MAINDrive extends LinearOpMode {
 
     private DriveSubsystem driveSubsystem;
     private FieldCentricCommand driveCommand;

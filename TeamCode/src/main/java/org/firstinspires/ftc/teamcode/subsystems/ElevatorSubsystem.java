@@ -1,43 +1,41 @@
-// ElevatorSubsystem.java
-package org.firstinspires.ftc.teamcode.subsystems;
+package org.firstinspires.ftc.teamcode.testing.elevator;
 
+import com.arcrobotics.ftclib.command.SubsystemBase;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.arcrobotics.ftclib.controller.PIDController;
 
-public class ElevatorSubsystem {
+// Subsystem: Elevator
+public class ElevatorSubsystem extends SubsystemBase {
+    private final DcMotorEx motorElevator;
+    private final PIDController controller;
 
-    private DcMotorEx motorElevator;
-    private PIDController controller;
-
-    public static double p = 0.005, i = 0, d = 0.00001;
+    public static double p = 0.01, i = 0, d = 0.00001;
     public static double kg = 0.1; // Gravity compensation
-    public static int maxPos = 880;
-    private int target = 0;
+    private int target = 0; // Linear slide target position
 
-    public ElevatorSubsystem(DcMotorEx motorElevator) {
-        this.motorElevator = motorElevator;
-        this.motorElevator.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
-        this.motorElevator.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        this.motorElevator.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        this.motorElevator.setDirection(DcMotorEx.Direction.FORWARD);
+    public ElevatorSubsystem(DcMotorEx motor) {
+        motorElevator = motor;
+        motorElevator.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
+        motorElevator.setMode(DcMotorEx.RunMode.STOP_AND_RESET_ENCODER);
+        motorElevator.setMode(DcMotorEx.RunMode.RUN_WITHOUT_ENCODER);
+        motorElevator.setDirection(DcMotorEx.Direction.FORWARD);
 
-        this.controller = new PIDController(p, i, d);
-    }
-
-    public void setTargetPosition(int target) {
-        this.target = Math.max(0, Math.min(target, maxPos));
+        controller = new PIDController(p, i, d);
     }
 
     public void resetEncoder() {
         motorElevator.setMode(DcMotorEx.RunMode.STOP_AND_RESET_ENCODER);
         motorElevator.setMode(DcMotorEx.RunMode.RUN_WITHOUT_ENCODER);
-        target = 0;
+        target = 0; // Reset the target position to match the new encoder state
     }
 
-    public void update() {
+    public void setTarget(int newTarget) {
+        target = Math.max(-100, Math.min(newTarget, 1000)); // Clamp target to limits
+    }
+
+    public void moveElevator() {
         int slidesPos = motorElevator.getCurrentPosition();
-        controller.setPID(p, i, d);
         double pid = controller.calculate(slidesPos, target);
         double power = pid + kg;
         motorElevator.setPower(power);
@@ -47,7 +45,8 @@ public class ElevatorSubsystem {
         return motorElevator.getCurrentPosition();
     }
 
-    public int getTargetPosition() {
+    public int getTarget() {
         return target;
     }
 }
+
