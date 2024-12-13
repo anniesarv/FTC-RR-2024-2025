@@ -1,6 +1,8 @@
-package org.firstinspires.ftc.teamcode.testing.extension;
+package org.firstinspires.ftc.teamcode.commands.extension;
 
 import com.arcrobotics.ftclib.command.CommandBase;
+
+import org.firstinspires.ftc.teamcode.subsystems.ExtensionSubsystem;
 
 public class MoveExtensionCommand extends CommandBase {
     private final ExtensionSubsystem extension;

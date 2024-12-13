@@ -5,9 +5,9 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.arcrobotics.ftclib.command.CommandScheduler;
 
-import org.firstinspires.ftc.teamcode.subsystems.ElevatorSubsystem;
-import org.firstinspires.ftc.teamcode.commands.elevator.ElevatorTestCommand;
-import org.firstinspires.ftc.teamcode.subsystems.Elevatortest;
+import org.firstinspires.ftc.teamcode.notinuse.elevator.ElevatorSubsystem;
+import org.firstinspires.ftc.teamcode.notinuse.elevator.ElevatorTestCommand;
+import org.firstinspires.ftc.teamcode.notinuse.Elevatortest;
 
 @TeleOp(name = "Elevator OpMode")
 public class ElevatorTestOpMode extends OpMode {

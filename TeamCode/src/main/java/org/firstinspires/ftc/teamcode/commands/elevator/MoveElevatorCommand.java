@@ -1,6 +1,8 @@
-package org.firstinspires.ftc.teamcode.testing.elevator;
+package org.firstinspires.ftc.teamcode.commands.elevator;
 
 import com.arcrobotics.ftclib.command.CommandBase;
+
+import org.firstinspires.ftc.teamcode.subsystems.ElevatorSubsystem;
 
 public class MoveElevatorCommand extends CommandBase {
     private final ElevatorSubsystem elevator;

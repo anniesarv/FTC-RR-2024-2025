@@ -1,9 +1,8 @@
-package org.firstinspires.ftc.teamcode.commands.elevator;
+package org.firstinspires.ftc.teamcode.notinuse.elevator;
 
 import com.arcrobotics.ftclib.command.CommandBase;
 import com.arcrobotics.ftclib.controller.PIDFController;
 import org.firstinspires.ftc.teamcode.notinuse.VerticalConstants;
-import org.firstinspires.ftc.teamcode.notinuse.Elevator;
 
 public class ElevatorPIDCommand extends CommandBase {
 

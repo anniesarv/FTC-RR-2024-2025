@@ -1,9 +1,8 @@
-package org.firstinspires.ftc.teamcode.opmodes.elevator;
+package org.firstinspires.ftc.teamcode.notinuse.elevator;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
-import org.firstinspires.ftc.teamcode.opmodes.elevator.ElevatorControl;
 import org.firstinspires.ftc.teamcode.hardware.RobotHardware;
 
 @TeleOp

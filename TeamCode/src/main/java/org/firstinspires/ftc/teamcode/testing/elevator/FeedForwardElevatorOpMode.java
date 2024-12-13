@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.testing;
+package org.firstinspires.ftc.teamcode.testing.elevator;
 
 import com.arcrobotics.ftclib.command.CommandScheduler;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
@@ -7,7 +7,8 @@ import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.acmerobotics.dashboard.FtcDashboard;
 import com.acmerobotics.dashboard.telemetry.MultipleTelemetry;
 
-import org.firstinspires.ftc.teamcode.notinuse.elevator.OtherElevatorSubsystem;
+import org.firstinspires.ftc.teamcode.commands.elevator.MoveElevatorCommand;
+import org.firstinspires.ftc.teamcode.subsystems.ElevatorSubsystem;
 
 @TeleOp
 public class FeedForwardElevatorOpMode extends OpMode {

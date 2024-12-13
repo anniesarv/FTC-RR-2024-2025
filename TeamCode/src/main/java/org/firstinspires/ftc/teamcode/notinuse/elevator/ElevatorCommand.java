@@ -1,7 +1,7 @@
-package org.firstinspires.ftc.teamcode.commands.elevator;
+package org.firstinspires.ftc.teamcode.notinuse.elevator;
 
 import com.arcrobotics.ftclib.command.CommandBase;
-import org.firstinspires.ftc.teamcode.notinuse.Elevator;
+
 import java.util.function.DoubleSupplier;
 
 public class ElevatorCommand extends CommandBase {

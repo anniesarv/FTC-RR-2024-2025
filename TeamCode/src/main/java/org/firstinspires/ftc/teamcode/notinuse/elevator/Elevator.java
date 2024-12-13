@@ -1,10 +1,11 @@
-package org.firstinspires.ftc.teamcode.notinuse;
+package org.firstinspires.ftc.teamcode.notinuse.elevator;
 
 import com.arcrobotics.ftclib.command.SubsystemBase;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.DigitalChannel;
 
 import org.firstinspires.ftc.teamcode.hardware.RobotHardware;
+import org.firstinspires.ftc.teamcode.notinuse.VerticalConstants;
 import org.firstinspires.ftc.teamcode.utils.Cache;
 
 public class Elevator extends SubsystemBase {

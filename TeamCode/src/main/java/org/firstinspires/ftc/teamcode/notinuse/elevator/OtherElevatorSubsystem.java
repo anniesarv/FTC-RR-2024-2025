@@ -5,7 +5,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.arcrobotics.ftclib.controller.PIDController;
 
-public class ElevatorSubsystem {
+public class OtherElevatorSubsystem {
 
     private DcMotorEx motorElevator;
     private PIDController controller;
@@ -15,7 +15,7 @@ public class ElevatorSubsystem {
     public static int maxPos = 880;
     private int target = 0;
 
-    public ElevatorSubsystem(DcMotorEx motorElevator) {
+    public OtherElevatorSubsystem(DcMotorEx motorElevator) {
         this.motorElevator = motorElevator;
         this.motorElevator.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
         this.motorElevator.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);

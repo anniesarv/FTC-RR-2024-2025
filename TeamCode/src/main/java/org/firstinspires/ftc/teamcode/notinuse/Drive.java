@@ -1,13 +1,11 @@
-package org.firstinspires.ftc.teamcode.opmodes.drive;
+package org.firstinspires.ftc.teamcode.notinuse;
 
 import com.arcrobotics.ftclib.command.CommandScheduler;
 import com.arcrobotics.ftclib.gamepad.GamepadEx;
 import org.firstinspires.ftc.teamcode.hardware.RobotHardware;
-import org.firstinspires.ftc.teamcode.notinuse.DriveTrain;
 import org.firstinspires.ftc.teamcode.commands.drivetrain.DriveCommand;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
-import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 //@TeleOp
 public class Drive extends OpMode {
