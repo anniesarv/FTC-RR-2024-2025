@@ -31,7 +31,7 @@ public class ElevatorSubsystem extends SubsystemBase {
     }
 
     public void setTarget(int newTarget) {
-        target = Math.max(-100, Math.min(newTarget, 1000)); // Clamp target to limits
+        target = Math.max(-1000, Math.min(newTarget, 1000)); // Clamp target to limits
     }
 
     public void moveElevator() {

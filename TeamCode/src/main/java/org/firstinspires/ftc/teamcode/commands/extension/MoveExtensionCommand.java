@@ -21,7 +21,7 @@ public class MoveExtensionCommand extends CommandBase {
 
     @Override
     public void execute() {
-        extension.moveElevator();
+        extension.moveExtension();
     }
 
     @Override

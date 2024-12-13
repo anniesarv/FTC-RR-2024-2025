@@ -1,10 +1,11 @@
 package org.firstinspires.ftc.teamcode.testing.OPS;
 
 import com.arcrobotics.ftclib.command.CommandScheduler;
-import com.qualcomm.robotcore.eventloop.opmode.OpMode;
-import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
-import com.qualcomm.robotcore.hardware.Gamepad;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
+import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.acmerobotics.dashboard.FtcDashboard;
+import com.acmerobotics.dashboard.telemetry.MultipleTelemetry;
 
 import org.firstinspires.ftc.teamcode.commands.drivetrain.FieldCentricCommand;
 import org.firstinspires.ftc.teamcode.commands.elevator.MoveElevatorCommand;
@@ -12,62 +13,63 @@ import org.firstinspires.ftc.teamcode.subsystems.DriveSubsystem;
 import org.firstinspires.ftc.teamcode.subsystems.ElevatorSubsystem;
 
 @TeleOp
-public class driveone extends OpMode {
+public class driverone extends LinearOpMode {
 
-    // Declare subsystems and commands
     private DriveSubsystem driveSubsystem;
     private FieldCentricCommand driveCommand;
-
     private ElevatorSubsystem elevator;
+    private MoveElevatorCommand moveElevatorCommand;
 
     @Override
-    public void init() {
+    public void runOpMode() throws InterruptedException {
         // Initialize DriveSubsystem
         driveSubsystem = new DriveSubsystem(hardwareMap);
-        // Initialize FieldCentricCommand for drive
         driveCommand = new FieldCentricCommand(driveSubsystem, gamepad1);
 
         // Initialize ElevatorSubsystem
-        DcMotorEx elevatorMotor = hardwareMap.get(DcMotorEx.class, "motorElevator");
-        elevator = new ElevatorSubsystem(elevatorMotor);
+        DcMotorEx motorElevator = hardwareMap.get(DcMotorEx.class, "motorElevator");
+        elevator = new ElevatorSubsystem(motorElevator);
+        moveElevatorCommand = new MoveElevatorCommand(elevator, 800);
 
-        CommandScheduler.getInstance().reset();
+        // Setup telemetry for both subsystems
+        telemetry = new MultipleTelemetry(telemetry, FtcDashboard.getInstance().getTelemetry());
 
-        telemetry.addLine("IMU Initialized. Waiting for start...");
-        telemetry.update();
-    }
-
-    @Override
-    public void loop() {
-        // Execute drive command (field-centric control with gamepad1)
-        driveCommand.execute();
-
-        // **Elevator controls** using gamepad1 d-pad
-        if (gamepad1.dpad_down) {
-            // Move elevator up
-            int newTarget = elevator.getTarget() + 7;  // Adjust this value based on your requirements
-            MoveElevatorCommand moveUpCommand = new MoveElevatorCommand(elevator, newTarget);
-            CommandScheduler.getInstance().schedule(moveUpCommand);
-        } else if (gamepad1.dpad_up) {
-            // Move elevator down
-            int newTarget = elevator.getTarget() - 7;  // Adjust this value based on your requirements
-            MoveElevatorCommand moveDownCommand = new MoveElevatorCommand(elevator, newTarget);
-            CommandScheduler.getInstance().schedule(moveDownCommand);
-        }
-
-        // Reset elevator encoder with the 'X' button
-        if (gamepad1.x) {
-            elevator.resetEncoder();
-        }
-
-        // Telemetry for debugging
-        telemetry.addData("Heading (rad)", driveSubsystem.getHeading());
-        telemetry.addData("Joystick (x, y, rx)", "%.2f, %.2f, %.2f", gamepad1.left_stick_x, gamepad1.left_stick_y, gamepad1.right_stick_x);
-        telemetry.addData("Elevator Target", elevator.getTarget());
-        telemetry.addData("Elevator Position", elevator.getCurrentPosition());
+        telemetry.addLine("IMU and Elevator Initialized. Waiting for start...");
         telemetry.update();
 
-        // Run the command scheduler to execute any scheduled commands
-        CommandScheduler.getInstance().run();
+        waitForStart();
+
+        if (isStopRequested()) return;
+
+        while (opModeIsActive()) {
+            // Execute Drive Command
+            driveCommand.execute();
+
+            // Control the elevator
+            if (gamepad1.right_bumper) {
+                CommandScheduler.getInstance().schedule(new MoveElevatorCommand(elevator, 800));
+            } else if (gamepad1.dpad_up) {
+                elevator.setTarget(elevator.getTarget() + 20);
+            } else if (gamepad1.dpad_down) {
+                elevator.setTarget(elevator.getTarget() - 20);
+            } else if (gamepad1.x) {
+                elevator.resetEncoder();
+            } else if (gamepad1.b) {
+                CommandScheduler.getInstance().schedule(new MoveElevatorCommand(elevator, 600));
+            }
+
+            // Move elevator according to target
+            elevator.moveElevator();
+
+            // Telemetry for both drive and elevator
+            telemetry.addData("Heading (rad)", driveSubsystem.getHeading());
+            telemetry.addData("Joystick (x, y, rx)", "%.2f, %.2f, %.2f", gamepad1.left_stick_x, gamepad1.left_stick_y, gamepad1.right_stick_x);
+            telemetry.addData("Target Position", elevator.getTarget());
+            telemetry.addData("Slide Position", elevator.getCurrentPosition());
+            telemetry.update();
+
+            // Run the Command Scheduler
+            CommandScheduler.getInstance().run();
+        }
     }
 }

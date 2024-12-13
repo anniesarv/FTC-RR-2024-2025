@@ -42,7 +42,7 @@ public class FeedForwardExtensionOpMode extends OpMode {
             CommandScheduler.getInstance().schedule(new MoveExtensionCommand(elevator, 600));
         }
 
-        elevator.moveElevator();
+        elevator.moveExtension();
 
         telemetry.addData("Target Position", elevator.getTarget());
         telemetry.addData("Slide Position", elevator.getCurrentPosition());

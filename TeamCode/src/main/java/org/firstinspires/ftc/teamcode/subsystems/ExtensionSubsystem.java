@@ -11,7 +11,7 @@ public class ExtensionSubsystem extends SubsystemBase {
     private final PIDController controller2;
 
     public static double p = 0.01, i = 0, d = 0.00001;
-    public static double kg = 0.1; // Gravity compensation
+    public static double kg = 0.08; // Gravity compensation
     private int target = 0; // Linear slide target position
 
     public ExtensionSubsystem(DcMotorEx motor) {
@@ -31,10 +31,10 @@ public class ExtensionSubsystem extends SubsystemBase {
     }
 
     public void setTarget(int newTarget) {
-        target = Math.max(-100, Math.min(newTarget, 1000)); // Clamp target to limits
+        target = Math.max(-1000, Math.min(newTarget, 1000)); // Clamp target to limits
     }
 
-    public void moveElevator() {
+    public void moveExtension() {
         int slidesPos = motorExtension.getCurrentPosition();
         double pid = controller2.calculate(slidesPos, target);
         double power = pid + kg;
