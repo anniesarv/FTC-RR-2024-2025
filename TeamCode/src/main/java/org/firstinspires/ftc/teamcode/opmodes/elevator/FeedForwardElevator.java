@@ -9,11 +9,10 @@ import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.acmerobotics.dashboard.FtcDashboard;
 import com.acmerobotics.dashboard.telemetry.MultipleTelemetry;
 import com.arcrobotics.ftclib.controller.PIDController;
-import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 @TeleOp
-public class FeedForward extends OpMode {
+public class FeedForwardElevator extends OpMode {
 
     // Subsystems and hardware components
 

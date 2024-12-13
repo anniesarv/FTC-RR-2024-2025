@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.opmodes;
+package org.firstinspires.ftc.teamcode.opmodes.elevator;
 
 import com.arcrobotics.ftclib.command.CommandScheduler;
 import org.firstinspires.ftc.teamcode.commands.elevator.ElevatorPIDCommand;

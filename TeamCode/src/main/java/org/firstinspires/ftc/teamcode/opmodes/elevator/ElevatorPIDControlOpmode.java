@@ -1,15 +1,12 @@
-package org.firstinspires.ftc.teamcode.opmodes;
+package org.firstinspires.ftc.teamcode.opmodes.elevator;
 
 import com.arcrobotics.ftclib.command.CommandScheduler;
-import com.arcrobotics.ftclib.command.CommandBase;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import org.firstinspires.ftc.teamcode.commands.elevator.ElevatorPIDCommand;
 import org.firstinspires.ftc.teamcode.subsystems.Elevator;
 import org.firstinspires.ftc.teamcode.hardware.RobotHardware;
-
-import org.firstinspires.ftc.teamcode.constants.VerticalConstants;
 
 @TeleOp
 public class ElevatorPIDControlOpmode extends OpMode {
