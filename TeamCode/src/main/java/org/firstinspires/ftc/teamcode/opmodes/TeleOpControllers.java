@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.opmodes;
+/*package org.firstinspires.ftc.teamcode.opmodes;
 
 import com.arcrobotics.ftclib.command.CommandScheduler;
 import com.arcrobotics.ftclib.command.button.GamepadButton;
@@ -88,7 +88,7 @@ public class TeleOpControllers extends OpMode {
         new GamepadButton(driver2, GamepadKeys.Button.LEFT_BUMPER).whenPressed(
                 new OuttakeUp(outtakeWrist)
         );
-
+''''''''''''''''
         // Outtake down when right bumper
         new GamepadButton(driver2, GamepadKeys.Button.RIGHT_BUMPER).whenPressed(
                 new OuttakeDown(outtakeWrist)
@@ -112,3 +112,4 @@ public class TeleOpControllers extends OpMode {
         telemetry.update();
     }
 }
+*/
