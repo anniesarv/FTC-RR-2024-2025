@@ -8,9 +8,9 @@ public class MoveElevatorCommand extends CommandBase {
     private final ElevatorSubsystem elevator;
     private final int targetPosition;
 
-    public MoveElevatorCommand(ElevatorSubsystem elevator, int targetPositionEl) {
+    public MoveElevatorCommand(ElevatorSubsystem elevator, int targetPosition) {
         this.elevator = elevator;
-        this.targetPosition = targetPositionEl;
+        this.targetPosition = targetPosition;
         addRequirements(elevator);
     }
 

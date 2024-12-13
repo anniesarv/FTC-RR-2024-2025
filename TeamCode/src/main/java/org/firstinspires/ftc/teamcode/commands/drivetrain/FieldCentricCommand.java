@@ -14,17 +14,14 @@ public class FieldCentricCommand {
     }
 
     public void execute() {
-        // Get joystick inputs
-        double y = -gamepad.left_stick_y; // Forward/backward
-        double x = gamepad.left_stick_x * 1.1; // Strafe (scaled for strafing inefficiency)
-        double rx = gamepad.right_stick_x; // Rotation
+        double y = -gamepad.left_stick_y;
+        double x = gamepad.left_stick_x * 1.1;
+        double rx = gamepad.right_stick_x;
 
-        // Reset IMU yaw with the "Options" button
         if (gamepad.options) {
             driveSubsystem.resetIMU();
         }
 
-        // Execute the drive logic
         driveSubsystem.drive(x, y, rx);
     }
 }

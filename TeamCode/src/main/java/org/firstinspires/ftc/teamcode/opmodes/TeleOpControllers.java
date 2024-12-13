@@ -41,18 +41,15 @@ public class TeleOpControllers extends OpMode {
 
     @Override
     public void init() {
-        // Initialize drive subsystem and command
         driveSubsystem = new DriveSubsystem(hardwareMap);
         driveCommand = new FieldCentricCommand(driveSubsystem, gamepad1);
 
-        // Initialize function subsystems
         robotHardware = new RobotHardware();
         robotHardware.init(hardwareMap);
 
         intakeWrist = new IntakeWrist(robotHardware);
         outtakeWrist = new OuttakeWrist(robotHardware);
 
-        // Gamepad objects for function control
         driver2 = new GamepadEx(gamepad2);
         driver1 = new GamepadEx(gamepad1);
 
@@ -61,10 +58,8 @@ public class TeleOpControllers extends OpMode {
 
     @Override
     public void loop() {
-        // Drivebase control via gamepad1 (field-centric)
         driveCommand.execute();
 
-        // Function controls via gamepad2
         // Run intake with button A
         new GamepadButton(driver2, GamepadKeys.Button.A).whenPressed(
                 new RunIntake(intakeWrist)

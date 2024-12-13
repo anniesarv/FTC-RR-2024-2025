@@ -37,17 +37,14 @@ public class drivetwoLINEAR extends LinearOpMode {
 
     @Override
     public void runOpMode() {
-        // Initialize elevator (extension) subsystem
         DcMotorEx motorElevator = hardwareMap.get(DcMotorEx.class, "motorExtension");
         elevator = new ExtensionSubsystem(motorElevator);
 
-        // Initialize intake and outtake subsystems
         robotHardware = new RobotHardware();
         robotHardware.init(hardwareMap);
         intakeWrist = new IntakeWrist(robotHardware);
         outtakeWrist = new OuttakeWrist(robotHardware);
 
-        // Initialize gamepad for second controller
         driver2 = new GamepadEx(gamepad2);
 
         CommandScheduler.getInstance().reset();
@@ -68,7 +65,6 @@ public class drivetwoLINEAR extends LinearOpMode {
             }
             elevator.moveExtension();
 
-            // Intake and Outtake controls via second gamepad
             new GamepadButton(driver2, GamepadKeys.Button.A).whenPressed(
                     new RunIntake(intakeWrist)
             ).whenReleased(
@@ -105,12 +101,10 @@ public class drivetwoLINEAR extends LinearOpMode {
                     new CloseClaw(outtakeWrist)
             );
 
-            // Telemetry update
             telemetry.addData("Target Position", elevator.getTarget());
             telemetry.addData("Slide Position", elevator.getCurrentPosition());
             telemetry.update();
 
-            // Run the command scheduler to execute all scheduled commands
             CommandScheduler.getInstance().run();
         }
     }

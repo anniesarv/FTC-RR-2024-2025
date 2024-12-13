@@ -30,21 +30,15 @@ import org.firstinspires.ftc.teamcode.subsystems.OuttakeWrist;
 import org.firstinspires.ftc.teamcode.hardware.RobotHardware;
 
 @TeleOp
-public class TeleTwo extends LinearOpMode {
+public class TeleOpGame extends LinearOpMode {
 
-    // Drive and Elevator Subsystems
     private DriveSubsystem driveSubsystem;
     private FieldCentricCommand driveCommand;
     private ElevatorSubsystem elevator;
-    private MoveElevatorCommand moveElevatorCommand;
 
-    // Other subsystems
-    private ExtensionSubsystem extension;
+    private ExtensionSubsystem extensionSubsystem;
     private IntakeWrist intakeWrist;
     private OuttakeWrist outtakeWrist;
-
-    // Gamepad controls
-    private GamepadEx driver1;
     private GamepadEx driver2;
     private RobotHardware robotHardware;
 
@@ -55,53 +49,49 @@ public class TeleTwo extends LinearOpMode {
 
         DcMotorEx motorElevator = hardwareMap.get(DcMotorEx.class, "motorElevator");
         elevator = new ElevatorSubsystem(motorElevator);
-        moveElevatorCommand = new MoveElevatorCommand(elevator, 800);
+        //moveElevatorCommand = new MoveElevatorCommand(elevator, 800);
 
         DcMotorEx motorExtension = hardwareMap.get(DcMotorEx.class, "motorExtension");
-        extension = new ExtensionSubsystem(motorExtension);
-
+        extensionSubsystem = new ExtensionSubsystem(motorExtension);
         robotHardware = new RobotHardware();
         robotHardware.init(hardwareMap);
+        intakeWrist = new IntakeWrist(robotHardware);
+        outtakeWrist = new OuttakeWrist(robotHardware);
 
-        intakeWrist = new IntakeWrist(robotHardware); // Pass RobotHardware to IntakeWrist
-        outtakeWrist = new OuttakeWrist(robotHardware); // Pass RobotHardware to OuttakeWrist
-
-        driver1 = new GamepadEx(gamepad1);
         driver2 = new GamepadEx(gamepad2);
 
         telemetry = new MultipleTelemetry(telemetry, FtcDashboard.getInstance().getTelemetry());
 
         waitForStart();
 
-        if (isStopRequested()) return;
-
         while (opModeIsActive()) {
             driveCommand.execute();
 
-            // Control the elevator (driver 1)
             if (gamepad1.right_bumper) {
                 CommandScheduler.getInstance().schedule(new MoveElevatorCommand(elevator, 800));
             } else if (gamepad1.dpad_up) {
-                elevator.setTarget(elevator.getTarget() + 20);
+                elevator.setTarget(elevator.getTarget() + 15);
             } else if (gamepad1.dpad_down) {
-                elevator.setTarget(elevator.getTarget() - 20);
+                elevator.setTarget(elevator.getTarget() - 15);
             } else if (gamepad1.x) {
                 elevator.resetEncoder();
+            } else if (gamepad1.b) {
+                CommandScheduler.getInstance().schedule(new MoveElevatorCommand(elevator, 600));
             }
 
             elevator.moveElevator();
 
-            // Control the extension (driver 2)
-            if (gamepad2.dpad_left) {
-                extension.setTarget(extension.getTarget() + 7);
+              if (gamepad2.dpad_left) {
+                extensionSubsystem.setTarget(extensionSubsystem.getTarget() + 15);
             } else if (gamepad2.dpad_right) {
-                extension.setTarget(extension.getTarget() - 7);
+                extensionSubsystem.setTarget(extensionSubsystem.getTarget() - 15);
             } else if (gamepad2.back) {
-                extension.resetEncoder();
+                extensionSubsystem.resetEncoder();
             }
-            extension.moveExtension();
 
-            // Intake and Outtake control (driver 2)
+            extensionSubsystem.moveExtension();
+
+            // Intake and Outtake controls via second gamepad
             new GamepadButton(driver2, GamepadKeys.Button.A).whenPressed(
                     new RunIntake(intakeWrist)
             ).whenReleased(
@@ -138,11 +128,12 @@ public class TeleTwo extends LinearOpMode {
                     new CloseClaw(outtakeWrist)
             );
 
-            telemetry.addData("Drive Heading", driveSubsystem.getHeading());
-            telemetry.addData("Elevator Target", elevator.getTarget());
-            telemetry.addData("Elevator Position", elevator.getCurrentPosition());
-            telemetry.addData("Extension Target", extension.getTarget());
-            telemetry.addData("Extension Position", extension.getCurrentPosition());
+            telemetry.addData("Heading (rad)", driveSubsystem.getHeading());
+            telemetry.addData("Joystick (x, y, rx)", "%.2f, %.2f, %.2f", gamepad1.left_stick_x, gamepad1.left_stick_y, gamepad1.right_stick_x);
+            telemetry.addData("Elevator Target Position", elevator.getTarget());
+            telemetry.addData("Extension Target", extensionSubsystem.getTarget());
+
+            telemetry.addData("Slide Position", elevator.getCurrentPosition());
             telemetry.update();
 
             CommandScheduler.getInstance().run();

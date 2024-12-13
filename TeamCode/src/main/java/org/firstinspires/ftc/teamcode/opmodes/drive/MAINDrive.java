@@ -16,10 +16,8 @@ public class MAINDrive extends LinearOpMode {
 
     @Override
     public void runOpMode() throws InterruptedException {
-        // Initialize the drive subsystem
         driveSubsystem = new DriveSubsystem(hardwareMap);
 
-        // Initialize the command
         driveCommand = new FieldCentricCommand(driveSubsystem, gamepad1);
 
         telemetry.addLine("IMU Initialized. Waiting for start...");
@@ -30,10 +28,8 @@ public class MAINDrive extends LinearOpMode {
         if (isStopRequested()) return;
 
         while (opModeIsActive()) {
-            // Execute the drive command
             driveCommand.execute();
 
-            // Telemetry for debugging
             telemetry.addData("Heading (rad)", driveSubsystem.getHeading());
             telemetry.addData("Joystick (x, y, rx)", "%.2f, %.2f, %.2f", gamepad1.left_stick_x, gamepad1.left_stick_y, gamepad1.right_stick_x);
             telemetry.update();

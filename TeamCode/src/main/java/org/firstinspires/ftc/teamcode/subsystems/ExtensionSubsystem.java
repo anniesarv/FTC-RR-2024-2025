@@ -11,7 +11,7 @@ public class ExtensionSubsystem extends SubsystemBase {
     private final PIDController controller2;
 
     public static double p = 0.01, i = 0, d = 0.00001;
-    public static double kg = 0.08; // Gravity compensation
+    public static double kg = 0.0; // Gravity compensation theres none
     private int target = 0; // Linear slide target position
 
     public ExtensionSubsystem(DcMotorEx motor) {
@@ -27,11 +27,11 @@ public class ExtensionSubsystem extends SubsystemBase {
     public void resetEncoder() {
         motorExtension.setMode(DcMotorEx.RunMode.STOP_AND_RESET_ENCODER);
         motorExtension.setMode(DcMotorEx.RunMode.RUN_WITHOUT_ENCODER);
-        target = 0; // Reset the target position to match the new encoder state
+        target = 0;
     }
 
     public void setTarget(int newTarget) {
-        target = Math.max(-1000, Math.min(newTarget, 1000)); // Clamp target to limits
+        target = Math.max(-1000, Math.min(newTarget, 1000));
     }
 
     public void moveExtension() {

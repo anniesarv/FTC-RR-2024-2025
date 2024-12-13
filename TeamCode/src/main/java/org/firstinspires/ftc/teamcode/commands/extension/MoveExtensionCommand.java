@@ -8,9 +8,9 @@ public class MoveExtensionCommand extends CommandBase {
     private final ExtensionSubsystem extension;
     private final int targetPosition;
 
-    public MoveExtensionCommand(ExtensionSubsystem extension, int targetPositionEX) {
+    public MoveExtensionCommand(ExtensionSubsystem extension, int targetPosition) {
         this.extension = extension;
-        this.targetPosition = targetPositionEX;
+        this.targetPosition = targetPosition;
         addRequirements(extension);
     }
 
